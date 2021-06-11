@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.green{
+  background: green;
+  color: #fff;
+}
+
+.red{
+  background: rgb(185, 4, 4);
+  color: #fff;
+}
+
+.passed{
+  color: green;
+}
