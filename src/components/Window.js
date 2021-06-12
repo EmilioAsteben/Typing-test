@@ -4,14 +4,40 @@ function Window(){
     const currentChar  = useRef(0); 
     const missCounter = useRef(0);
     const isTestPassed = useRef(false);
+
+
+    const timer = useRef(false);
     const timeCounter = useRef(0);
-    const [timer, setTimer] = useState(false);
+    let timerInterval;
+    
+    const enteredChars = useRef(0); 
+    const [charsPerMinute, setCharsPerMinute] = useState(0);
+    
+    
+
     const [text, setText] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [typingAccuracy, setTypingAccuracy] = useState(100);
     const isMistake = useRef(false);
     let textLength;
     let chars = document.getElementsByTagName('span');
+
+
+    function startTimer(){
+
+        timer.current = true;
+
+        timerInterval = setInterval(() => {timeCounter.current++; setCharsPerMinute(Math.floor(60 /timeCounter.current * enteredChars.current )) }, 1000);
+        
+
+     }
+
+     function endTimer(){
+
+        if(!timer.current && isTestPassed.current){
+            clearInterval(timerInterval);
+        }
+     }
 
     useEffect(()=>{
 
@@ -32,11 +58,13 @@ function Window(){
 
     useEffect(()=>{
 
-        document.addEventListener('keydown', (e)=> keydownHandler(e))
-        console.log('currentchar hook',chars[currentChar.current]);
+        document.addEventListener('keydown', (e)=> keydownHandler(e));
+        
+        
         
         return function(){
-            document.removeEventListener('keydown', (e)=> keydownHandler(e))
+            document.removeEventListener('keydown', (e)=> keydownHandler(e));
+            
         }
      }, [] )
 
@@ -51,8 +79,11 @@ function Window(){
          .then(()=>{setLoading(false); chars[currentChar.current].className = 'green'})
      }
 
-     function keydownHandler(e){
   
+
+     function keydownHandler(e){
+        
+        !timer.current && !isTestPassed.current &&  startTimer();
        
         if(e.keyCode === 16 || isTestPassed.current === true ){
             
@@ -62,6 +93,8 @@ function Window(){
         if(currentChar.current >= textLength -1 && e.key === chars[currentChar.current].textContent  ){
             chars[currentChar.current].className = 'passed';
             isTestPassed.current = true;
+            timer.current = false;
+            endTimer();
             
             return;
         }
@@ -73,17 +106,19 @@ function Window(){
             setTypingAccuracy((prev=>
                 (prev - 1 / (textLength /100))
             ));
+            isMistake.current === false &&
+            enteredChars.current++;
             isMistake.current = true;
-            
             
             
             return;
         }
         currentChar.current++; 
+        enteredChars.current++;
         chars[currentChar.current].className = 'green';
         chars[currentChar.current - 1].className = 'passed'; 
         isMistake.current = false;
-        console.log(currentChar.current , textLength -1 );
+        
      }
 
 return(
@@ -103,6 +138,7 @@ return(
       }
 
       Accuracy {parseFloat(typingAccuracy.toFixed(1))  + '%'}
+      {charsPerMinute};
 
       
         
