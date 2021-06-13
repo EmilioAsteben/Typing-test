@@ -1,0 +1,52 @@
+.main{
+    display: flex;
+    margin-top:50px;
+    justify-content: space-between;
+    border: 2px solid rgba(156, 156, 156, 0.541);
+    border-radius: 10px;
+    flex-basis: 850px;
+    
+}
+
+.text{
+    font-size: 21px;
+    padding: 30px 10px 30px 45px;
+    min-height: 250px;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-basis: 130px;
+    min-height: 100%;
+    flex-shrink:0;
+    background-color: rgba(79, 114, 102, 0.418);
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span{
+    line-height: 1.7;
+}
+
+
+
+.green{
+    background: green;
+    color: #fff;
+  }
+  
+  .red{
+    background: rgb(185, 4, 4);
+    color: #fff;
+  }
+  
+  .passed{
+    color: green;
+  }

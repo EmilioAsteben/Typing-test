@@ -1,9 +1,10 @@
-import Window from './components/Window';
+import TypeTrainer from './components/TypeTrainer';
 
 function App() {
   return (
     <div className="App">
-     <Window/>
+     <TypeTrainer/>
+     
     </div>
   );
 }
