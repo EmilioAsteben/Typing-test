@@ -30,7 +30,7 @@ function Sidebar(props){
 
                 <div className={`select_language` + (props.disableSelect ? ' disabled' : '')}>
 
-                    <h5>Select language</h5>
+                    <h5>Select layout</h5>
 
                     <div className="languages">
                         

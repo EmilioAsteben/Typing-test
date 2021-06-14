@@ -4,8 +4,6 @@ import '../styles/typetrainer.css';
 
 
 
-
-
 function TypeTrainer(){
     const currentChar  = useRef(0); 
     const missCounter = useRef(0);
@@ -110,6 +108,7 @@ function TypeTrainer(){
         .then(text => {textLength.current = text.length; return text.split('')})
         .then((text)=> {console.log(text.length);setText(text) })
         .then(()=>{setLoading(false); chars[currentChar.current].className = 'green'})
+        .catch(()=> {setLoading(false); setText(['ERROR: Something went wrong. Please click Restart. '])} );
     }
 
     function fetchRusText(){
@@ -123,12 +122,14 @@ function TypeTrainer(){
           .then(text => {textLength.current = text.text.length; return text.text.split('')})
           .then((text)=> {console.log(text.length);setText(text) })
           .then(()=>{setLoading(false); chars[currentChar.current].className = 'green'})
+          .catch(()=> {setLoading(false); setText(['ERROR: Что-то пошло не так. Пожалуйста, нажмите Restart '])} );
 
     }
 
 
     function toggleTextLang(e, lang){
         e.preventDefault();
+        setWrongLayout(false);
         if(language.current === lang || isTestStarted.current ) return;
         language.current = lang;
 
@@ -161,7 +162,16 @@ function TypeTrainer(){
 
         //  if(timer.current){setDisableSelect(true)};
          
-          if(timer.current === false && isTestPassed.current === false && e.keyCode > 57){startTimer()}
+          if(timer.current === false && isTestPassed.current === false && e.keyCode > 57){
+
+            if(  
+                (language.current === 'English' && /^[\x20-\x7E]*$/.test(e.key)) ||
+                (language.current === 'Russian' && /^[а-яА-ЯЁё\W]*$/.test(e.key))
+              )
+
+              startTimer();
+            
+            }
 
           
 
@@ -170,7 +180,6 @@ function TypeTrainer(){
             console.log('ALTSHIFT');
             
         }
-
 
        
         if( e.keyCode < 32 || isTestPassed.current === true ){
@@ -241,11 +250,6 @@ return(
           ), [text]
          ) 
       }
-
-      {/* Accuracy {parseFloat(typingAccuracy.toFixed(1))  + '%'}
-      {charsPerMinute}; */}
-
-      
 
       
       </div> 
