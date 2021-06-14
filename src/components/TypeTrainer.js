@@ -158,7 +158,7 @@ function TypeTrainer(){
   
 
      function keydownHandler(e){
-         console.log(e.keyCode);
+         console.log(e);
 
         //  if(timer.current){setDisableSelect(true)};
          
@@ -175,7 +175,9 @@ function TypeTrainer(){
 
           
 
-        if( (e.shiftKey && e.altKey) && !isTestPassed.current ){
+        if(  (  (e.shiftKey && e.altKey)  ||  (e.metaKey && e.keyCode === 32)  )  &&
+         !isTestPassed.current ){
+             
             setWrongLayout(false);
             console.log('ALTSHIFT');
             
