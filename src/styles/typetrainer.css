@@ -1,155 +1,146 @@
-.main{
-    flex-basis: 850px;
+.main {
+  flex-basis: 850px;
 }
 
-.inner{
-    display: flex;
-    margin-top:50px;
-    justify-content: space-between;
-    border: 2px solid rgba(156, 156, 156, 0.541);
-    border-radius: 10px;
-    
-    
+.inner {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  border: 2px solid rgba(156, 156, 156, 0.541);
+  border-radius: 10px;
 }
 
-.text{
-    flex-grow: 1;
-    font-size: 21px;
-    padding: 30px 10px 30px 45px;
-    min-height: 250px;
+.text {
+  flex-grow: 1;
+  font-size: 21px;
+  padding: 30px 10px 30px 45px;
+  min-height: 250px;
 }
 
-.wrong_layout{
-    margin-top: 10px;
-    text-align: center;
-    font-weight: bold;
-       
+.wrong_layout {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
-.result{
-    display: flex;
-    padding: 15px 0 20px 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #ff03;
+.result {
+  display: flex;
+  padding: 15px 0 20px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ff03;
 }
 
-.result_stat{
-    display: flex;
-    flex-direction: column;
+.result_stat {
+  display: flex;
+  flex-direction: column;
 }
 
-.stats h4{
-    color: #fff;
+.stats h4 {
+  color: #fff;
 }
 
-.indicator{
-    font-size: 18px;
-    color: #fff;
+.indicator {
+  font-size: 18px;
+  color: #fff;
 }
 
-.result h2{
-    
-    margin: 0 0 24px 0;
+.result h2 {
+  margin: 0 0 24px 0;
 }
 
-aside{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    flex-basis: 130px;
-    min-height: 100%;
-    flex-shrink:0;
-    background-color: rgba(79, 114, 102, 0.77);
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-basis: 130px;
+  min-height: 100%;
+  flex-shrink: 0;
+  background-color: rgba(79, 114, 102, 0.77);
 }
 
-.stats{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
-.select_language{
-    margin-top:20px;
+.select_language {
+  margin-top: 20px;
 }
-.select_language.disabled{
-    opacity: .2;
-    pointer-events: none;
-}
-
-.languages{
-display: flex;
-justify-content: space-around;
-background-color: #fff;
+.select_language.disabled {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
-.restart_button{
-   
-        background-color:#000000;
-        border-radius:10px;
-        border:1px solid #000000;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:16px;
-        padding:10px 25px;
-        text-decoration:none;
-        margin: 35px 0 15px 0;
-  
-    
+.languages {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+.restart_button {
+  background-color: #000000;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 16px;
+  padding: 10px 25px;
+  text-decoration: none;
+  margin: 35px 0 15px 0;
 }
 
 .restart_button:hover {
-	background-color:#000000;
+  background-color: #000000;
 }
 .restart_button:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
-.rus, .eng{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 3px 0;
-    border: 2px solid black;
-    flex-grow: 1;
-    font-size: 12px;
+.rus,
+.eng {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 3px 0;
+  border: 2px solid black;
+  flex-grow: 1;
+  font-size: 12px;
 }
 
-.active{
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    font-weight: bold;
-    font-size: 14px;
+.active {
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-h5{
-    margin: 10px 0;
+h5 {
+  margin: 10px 0;
 }
 
-span{
-    line-height: 1.7;
-    border-radius: 3px;
+span {
+  line-height: 1.7;
+  border-radius: 3px;
 }
 
+.green {
+  background: green;
+  color: #fff;
+}
 
+.red {
+  background: rgb(185, 4, 4);
+  color: #fff;
+}
 
-.green{
-    background: green;
-    color: #fff;
-  }
-  
-  .red{
-    background: rgb(185, 4, 4);
-    color: #fff;
-  }
-  
-  .passed{
-    color: green;
-  }
+.passed {
+  color: green;
+}
