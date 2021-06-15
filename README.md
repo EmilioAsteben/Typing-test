@@ -1,3 +1,14 @@
+1) git clone https://github.com/EmilioAsteben/Typing-test.git
+
+2) yarn install
+
+3) yarn start
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
