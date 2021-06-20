@@ -1,8 +1,10 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Sidebar from "./Sidebar";
+import {incEnteredChars} from '../redux/actions';
+import {connect} from 'react-redux';
 import "../styles/typetrainer.css";
 
-function TypeTrainer() {
+function TypeTrainer(props) {
   const isTestStarted = useRef(false);
   const isTestPassed = useRef(false);
   const [showResult, setShowResult] = useState(false);
@@ -143,6 +145,8 @@ function TypeTrainer() {
   function keydownHandler(e) {
     //Start timer
 
+    props.incEnteredChars();
+
     if (
       timer.current === false &&
       isTestPassed.current === false &&
@@ -220,6 +224,7 @@ function TypeTrainer() {
 
   return (
     <div className="main">
+      {props.characters}
       <div className="inner">
         <div className="text">
           {loading ? "Loading..." : ""}
@@ -262,4 +267,16 @@ function TypeTrainer() {
   );
 }
 
-export default TypeTrainer;
+// export default TypeTrainer;
+
+const mapDispatchToProps = {
+  incEnteredChars
+}
+
+const mapStateToProps = state => ({
+  characters: state.app.enteredChars
+})
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TypeTrainer)

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {connect} from 'react-redux';
 
 function Sidebar(props) {
   const [activeLang, setActiveLang] = useState("English");
@@ -56,8 +57,14 @@ function Sidebar(props) {
       >
         Restart
       </button>
+      {props.characters}
     </aside>
   );
 }
 
-export default Sidebar;
+
+const mapStateToProps = state => ({
+  characters: state.app.enteredChars
+})
+export default connect(mapStateToProps)(Sidebar);
+
