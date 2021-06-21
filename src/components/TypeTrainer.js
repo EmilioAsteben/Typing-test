@@ -1,10 +1,13 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Sidebar from "./Sidebar";
-import {incEnteredChars} from '../redux/actions';
-import {connect} from 'react-redux';
+import {incEnteredChars} from "../redux/actions";
+import {connect} from "react-redux";
 import "../styles/typetrainer.css";
 
 function TypeTrainer(props) {
+
+  const [activeCharClass, setActivaCharClass] = useState("green");
+
   const isTestStarted = useRef(false);
   const isTestPassed = useRef(false);
   const [showResult, setShowResult] = useState(false);
@@ -33,6 +36,8 @@ function TypeTrainer(props) {
   let chars = useRef(document.getElementsByTagName("span"));
   chars = chars.current;
 
+ 
+
   useEffect(() => {
     fetchEngText();
 
@@ -60,7 +65,7 @@ function TypeTrainer(props) {
       })
       .then(() => {
         setLoading(false);
-        chars[currentChar.current].className = "green";
+        setActivaCharClass("green");
       })
       .catch(() => {
         setLoading(false);
@@ -83,7 +88,7 @@ function TypeTrainer(props) {
       })
       .then(() => {
         setLoading(false);
-        chars[currentChar.current].className = "green";
+        setActivaCharClass("green");
       })
       .catch(() => {
         setLoading(false);
@@ -145,7 +150,7 @@ function TypeTrainer(props) {
   function keydownHandler(e) {
     //Start timer
 
-    props.incEnteredChars();
+  
 
     if (
       timer.current === false &&
@@ -191,7 +196,7 @@ function TypeTrainer(props) {
       currentChar.current >= textLength.current - 1 &&
       e.key === chars[currentChar.current].textContent
     ) {
-      chars[currentChar.current].className = "passed";
+      setActivaCharClass("passed")
       isTestPassed.current = true;
       timer.current = false;
       setShowResult(true);
@@ -203,12 +208,12 @@ function TypeTrainer(props) {
     //handles the error
 
     if (e.key !== chars[currentChar.current].textContent) {
-      chars[currentChar.current].className = "red";
       isMistake.current === false && missCounter.current++;
       isMistake.current === false &&
         setTypingAccuracy((prev) => prev - 1 / (textLength.current / 100));
-      isMistake.current === false && enteredChars.current++;
+      isMistake.current === false && enteredChars.current++ &&  props.incEnteredChars();;
       isMistake.current = true;
+      setActivaCharClass("red")
 
       return;
     }
@@ -217,23 +222,31 @@ function TypeTrainer(props) {
 
     currentChar.current++;
     enteredChars.current++;
-    chars[currentChar.current].className = "green";
-    chars[currentChar.current - 1].className = "passed";
+    props.incEnteredChars();
     isMistake.current = false;
+    setActivaCharClass("green")
   }
 
   return (
     <div className="main">
-      {props.characters}
       <div className="inner">
         <div className="text">
           {loading ? "Loading..." : ""}
           {useMemo(
             () =>
               text.map((item, index) => {
-                return <span key={index}>{item}</span>;
+                console.log("map")
+                return <span className = 
+             
+
+               {currentChar.current === index ? activeCharClass : 
+                currentChar.current > index   ? "passed" :
+                undefined
+              }
+                
+                key={index}>{item}</span>;
               }),
-            [text]
+            [text, currentChar.current, activeCharClass]
           )}
         </div>
 
@@ -257,11 +270,12 @@ function TypeTrainer(props) {
         <div className="result">
           <h2>GREAT JOB!</h2> <br />
           <div className="result_stat">
-            <b>Result:</b> <br />
-            Accuracy: {parseFloat(typingAccuracy.toFixed(1))}% <br />
-            Speed: {charsPerMinute} ch/min
+            <b>Result:</b> 
+            <div> Accuracy: {parseFloat(typingAccuracy.toFixed(1))}%</div> 
+           <div> Speed: {charsPerMinute} ch/min </div>
           </div>
         </div>
+        
       )}
     </div>
   );

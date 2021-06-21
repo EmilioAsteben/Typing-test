@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 function Sidebar(props) {
   const [activeLang, setActiveLang] = useState("English");
 
+
+
   return (
     <aside>
       <div className="stats">
@@ -20,7 +22,7 @@ function Sidebar(props) {
 
 
       <div
-        className={`select_language` + (props.disableSelect ? " disabled" : "")}
+        className={"select_language" + (props.disableSelect ? " disabled" : "")}
       >
         <h5>Select layout</h5>
 
@@ -30,7 +32,7 @@ function Sidebar(props) {
               props.toggleText(e, "English");
               setActiveLang("English");
             }}
-            className={`eng` + (activeLang === "English" ? " active" : "")}
+            className={"eng" + (activeLang === "English" ? " active" : "")}
           >
             Eng
           </div>
@@ -50,14 +52,12 @@ function Sidebar(props) {
       <button
         className="restart_button"
         type="reset"
-        tabIndex={-1}
         onClick={(e) => {
           props.restart(e);
         }}
       >
         Restart
       </button>
-      {props.characters}
     </aside>
   );
 }

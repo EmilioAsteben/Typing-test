@@ -1,6 +1,7 @@
 
 const initialState = {
- enteredChars: 6
+ 
+ enteredChars: 0
 }
 
 export const appReducer = (state = initialState, action) => {
