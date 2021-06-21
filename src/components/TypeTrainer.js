@@ -1,12 +1,13 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Sidebar from "./Sidebar";
 import {incEnteredChars} from "../redux/actions";
+import {resetEnteredChars} from "../redux/actions";
 import {connect} from "react-redux";
 import "../styles/typetrainer.css";
 
 function TypeTrainer(props) {
 
-  const [activeCharClass, setActivaCharClass] = useState("green");
+  
 
   const isTestStarted = useRef(false);
   const isTestPassed = useRef(false);
@@ -15,8 +16,10 @@ function TypeTrainer(props) {
   const currentChar = useRef(0);
   const missCounter = useRef(0);
   const enteredChars = useRef(0);
+  const [activeCharClass, setActivaCharClass] = useState("green");
   const [charsPerMinute, setCharsPerMinute] = useState(0);
   const [typingAccuracy, setTypingAccuracy] = useState(100);
+  
 
   const isMistake = useRef(false);
   const [wrongLayout, setWrongLayout] = useState(false);
@@ -29,7 +32,7 @@ function TypeTrainer(props) {
   let timerInterval = useRef();
 
   const [text, setText] = useState([]);
-  let textLength = useRef(0);
+  let textLength = useRef('...');
 
   const [loading, setLoading] = useState(true);
 
@@ -116,12 +119,14 @@ function TypeTrainer(props) {
     timeCounter.current = 0;
     isMistake.current = false;
     enteredChars.current = 0;
+    textLength.current = '...';
 
     setShowResult(false);
     setDisableSelect(false);
     setWrongLayout(false);
     setCharsPerMinute(0);
     setTypingAccuracy(100);
+    props.resetEnteredChars();
     timer.current = false;
     language.current === "English" ? fetchEngText() : fetchRusText();
   };
@@ -148,10 +153,10 @@ function TypeTrainer(props) {
   }
 
   function keydownHandler(e) {
+
     //Start timer
 
-  
-
+    
     if (
       timer.current === false &&
       isTestPassed.current === false &&
@@ -197,6 +202,7 @@ function TypeTrainer(props) {
       e.key === chars[currentChar.current].textContent
     ) {
       setActivaCharClass("passed")
+      props.incEnteredChars();
       isTestPassed.current = true;
       timer.current = false;
       setShowResult(true);
@@ -211,7 +217,7 @@ function TypeTrainer(props) {
       isMistake.current === false && missCounter.current++;
       isMistake.current === false &&
         setTypingAccuracy((prev) => prev - 1 / (textLength.current / 100));
-      isMistake.current === false && enteredChars.current++ &&  props.incEnteredChars();;
+      isMistake.current === false && enteredChars.current++ ;
       isMistake.current = true;
       setActivaCharClass("red")
 
@@ -251,6 +257,7 @@ function TypeTrainer(props) {
         </div>
 
         <Sidebar
+          textLength = {textLength.current}
           disableSelect={disableSelect}
           toggleText={toggleTextLang}
           restart={restart}
@@ -284,7 +291,8 @@ function TypeTrainer(props) {
 // export default TypeTrainer;
 
 const mapDispatchToProps = {
-  incEnteredChars
+  incEnteredChars,
+  resetEnteredChars
 }
 
 const mapStateToProps = state => ({

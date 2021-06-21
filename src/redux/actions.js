@@ -5,3 +5,10 @@ export function incEnteredChars() {
     }
   }
   
+
+  export function resetEnteredChars() {
+    return {
+      type: 'RES_ENTERED_CHARS'
+
+    }
+  }

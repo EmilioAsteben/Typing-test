@@ -1,6 +1,3 @@
-.yep{
-  background-color: brown;
-}
 
 .main {
   flex-basis: 850px;
@@ -147,4 +144,9 @@ span {
 
 .passed {
   color: green;
+}
+
+.progress{
+  margin-bottom: 15px;
+  color: #fff;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState} from "react";
 import {connect} from 'react-redux';
 
 function Sidebar(props) {
@@ -42,7 +42,7 @@ function Sidebar(props) {
               props.toggleText(e, "Russian");
               setActiveLang("Russian");
             }}
-            className={"rus" + (activeLang === "Russian" ? " active" : "")}
+            className={"rus" + (activeLang === "Russian" ? "active" : "")}
           >
             Rus
           </div>
@@ -58,6 +58,7 @@ function Sidebar(props) {
       >
         Restart
       </button>
+      <div className = "progress">{ props.characters + "/" + props.textLength  }</div>
     </aside>
   );
 }
