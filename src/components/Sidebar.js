@@ -42,7 +42,7 @@ function Sidebar(props) {
               props.toggleText(e, "Russian");
               setActiveLang("Russian");
             }}
-            className={"rus" + (activeLang === "Russian" ? "active" : "")}
+            className={"rus" + (activeLang === "Russian" ? " active" : "")}
           >
             Rus
           </div>
