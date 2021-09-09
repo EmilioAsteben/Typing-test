@@ -1,8 +1,12 @@
 # Typing speed test
 
-Typing speed test. Gets a generated random text from 
-https://baconipsum.com
-https://fish-text.ru.
+Typing speed test. Gets a generated random text from  
+
+https://baconipsum.com  
+
+https://fish-text.ru.  
+  &nbsp;
+  &nbsp;
 
 Shows your accuracy and speed of typing.
 
