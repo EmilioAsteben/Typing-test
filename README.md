@@ -14,7 +14,7 @@ To start the test just start typing.
 ## To Get started
 
 
-### `git clone https://github.com/EmilioAsteben/React-chat.git`
+### `git clone https://github.com/EmilioAsteben/Typing-test.git`
 
 ### `yarn install`
 
